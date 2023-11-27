@@ -29,9 +29,11 @@ RUN apt update && apt -y --no-install-recommends install \
        sudo \
 	   vim \
        git \
+	   ssh \
        build-essential \
        clang \
        cmake \
+	   ninja-build \
        gdb \
        wget \
 	   python3 \
@@ -47,5 +49,5 @@ USER $USERNAME
 WORKDIR /home/$USERNAME
 
 # Make the directory we will map the volume to, as the user, so it has proper permissions
-RUN mkdir -p /home/$USERNAME/volume/git-workspace
+RUN mkdir -p /home/$USERNAME/volume
 
