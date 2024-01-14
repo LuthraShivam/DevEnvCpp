@@ -27,6 +27,7 @@ ARG USER_GID=$USER_UID
 #    in my opinion, doing the latter invites all kinds of problems.
 RUN apt update && apt -y --no-install-recommends install \
        sudo \
+	   bash \
 	   vim \
        git \
 	   ssh \
@@ -38,7 +39,10 @@ RUN apt update && apt -y --no-install-recommends install \
        wget \
 	   python3 \
 	   python3-pip
-	   
+
+# Package manager for C++ is what everyone needs in thier life
+RUN pip install conan
+
 # Create a non-root user and give them sudo
 RUN groupadd --gid $USER_GID $USERNAME && \
     useradd --uid $USER_UID --gid $USER_GID -m $USERNAME && \
@@ -50,4 +54,7 @@ WORKDIR /home/$USERNAME
 
 # Make the directory we will map the volume to, as the user, so it has proper permissions
 RUN mkdir -p /home/$USERNAME/volume
+
+# Use bash by default
+ln -sf /bin/bash /bin/sh
 
