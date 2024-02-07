@@ -54,7 +54,3 @@ WORKDIR /home/$USERNAME
 
 # Make the directory we will map the volume to, as the user, so it has proper permissions
 RUN mkdir -p /home/$USERNAME/volume
-
-# Use bash by default
-ln -sf /bin/bash /bin/sh
-
