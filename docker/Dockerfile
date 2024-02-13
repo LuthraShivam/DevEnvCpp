@@ -15,6 +15,7 @@
 # When done, just 'exit'
 
 FROM ubuntu:22.04
+SHELL ["/bin/bash", "-c"]
 MAINTAINER ChristopherPisz
 LABEL Description="Chris' Ubuntu based development environment for C++"
 
@@ -49,8 +50,9 @@ RUN groupadd --gid $USER_GID $USERNAME && \
 	echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Change to the user
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
-# Make the directory we will map the volume to, as the user, so it has proper permissions
+# As the user, make the directory we will map the volume to, as the user, so it has proper permissions
 RUN mkdir -p /home/$USERNAME/volume
