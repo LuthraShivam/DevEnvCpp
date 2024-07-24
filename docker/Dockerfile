@@ -27,19 +27,19 @@ ARG USER_GID=$USER_UID
 #    I am installing git on the container rather than the host, because we are using the volume rather than mounting a directory we share with the host
 #    in my opinion, doing the latter invites all kinds of problems.
 RUN apt update && apt -y --no-install-recommends install \
-       sudo \
-	   bash \
-	   vim \
-       git \
-	   ssh \
-       build-essential \
-       clang \
-       cmake \
-	   ninja-build \
-       gdb \
-       wget \
-	   python3 \
-	   python3-pip
+    sudo \
+    bash \
+    vim \
+    git \
+    ssh \
+    build-essential \
+    clang \
+    cmake \
+    ninja-build \
+    gdb \
+    wget \
+    python3 \
+    python3-pip
 
 # Package manager for C++ is what everyone needs in thier life
 RUN pip install conan
@@ -47,7 +47,7 @@ RUN pip install conan
 # Create a non-root user and give them sudo
 RUN groupadd --gid $USER_GID $USERNAME && \
     useradd --uid $USER_UID --gid $USER_GID -m $USERNAME && \
-	echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME && \
+    echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Change to the user
