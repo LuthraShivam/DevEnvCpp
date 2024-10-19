@@ -16,8 +16,7 @@
 
 FROM ubuntu:22.04
 SHELL ["/bin/bash", "-c"]
-MAINTAINER ChristopherPisz
-LABEL Description="Chris' Ubuntu based development environment for C++"
+LABEL Description="Shivam's Ubuntu based development environment for C++"
 
 ARG USERNAME=developer
 ARG USER_UID=1000
@@ -39,10 +38,11 @@ RUN apt update && apt -y --no-install-recommends install \
     gdb \
     wget \
     python3 \
-    python3-pip
+    python3-pip \
+    libboost-all-dev
 
 # Package manager for C++ is what everyone needs in thier life
-RUN pip install conan
+#RUN pip install conan
 
 # Create a non-root user and give them sudo
 RUN groupadd --gid $USER_GID $USERNAME && \
